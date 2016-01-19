@@ -6,6 +6,7 @@ boolean isQu = false;
 
 public void setup() {
 	String lines[] = loadStrings("words.txt");
+
 	System.out.println("there are " + lines.length + " lines");
 	for (int i = 0 ; i < lines.length; i++) {
 	  System.out.println(pigLatin(lines[i]));
@@ -20,11 +21,12 @@ public int findFirstVowel(String sWord) {
 	for( int i = 0; i < sWord.length(); i++) {
 		for( int j = 0; j < vowel.length; j++) {
 			if (sWord.charAt(i) == vowel[j]) {
-				if (sWord.charAt(i) == 'u' && sWord.charAt(i - i) == 'q') {
+				if (sWord.charAt(i) == 'u' && sWord.charAt(i-1) == 'q') {
 					isQu = true;
 					return i;
 					
 				}
+				isQu = false;
 				return i;
 			}
 		}
@@ -48,12 +50,12 @@ public String pigLatin(String sWord) {
 		return sWord + "way";
 	}
     else if (isQu) {
-    	return sWord.substring(findFirstVowel(sWord) +1, sWord.length()) + sWord.substring(0, findFirstVowel(sWord) +1) + "ay";
+    	return sWord.substring(findFirstVowel(sWord) + 1 ) + sWord.substring(0, findFirstVowel(sWord) +1 ) + "ay";
     }
 
 	else if(findFirstVowel(sWord) > 0) 
 	{
-		return sWord.substring(findFirstVowel(sWord)) + sWord.substring(0, findFirstVowel(sWord)) + "ay";
+		return sWord.substring(findFirstVowel(sWord) ) + sWord.substring(0, findFirstVowel(sWord) ) + "ay";
 	}
 
 
